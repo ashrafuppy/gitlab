@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    
+    
+    stages {
+        stage('Prepration') {
+            steps {
+                echo 'Hello World'
+               
+            }
+        }
+         stage('dev') {
+            steps {
+                echo 'dev environment'
+                
+            }
+         }
+          stage('Regression Run') {
+            steps {
+                echo 'dev environment'
+                
+            }
+         }
+          stage('QA') {
+            steps {
+                echo 'dev environment'
+                
+            }
+         }
+          stage('prod') {
+              when {
+                  branch 'master'
+              }
+              input {
+                    message 'Please approve the package'
+                    parameters {
+                        string 'UserID'
+                        password defaultValue: '', name: 'password'
+                      }
+                    }
+
+            steps {
+                echo 'prod environment'
+               
+            }
+          }
+    }
+}
